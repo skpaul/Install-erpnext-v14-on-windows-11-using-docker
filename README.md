@@ -11,14 +11,22 @@ An easy and step-by-step guide to install Frappe Bench in Windows 11 using Docke
 
 
 ### Check Docker version
-    docker version
-    git version
+```shell
+docker version
+git version
+```
 
-### Clone frappe_docker and move to frappe_docker folder
+### Create a directory in your preferred location
+
+```shell
+mkdir mysite #assuming that your project name is mysite
+cd mysite
+```
+
+### Clone frappe_docker 
 
 ```sh
-git clone https://github.com/frappe/frappe_docker.git
-cd frappe_docker
+git clone https://github.com/frappe/frappe_docker.git .
 ```
 
 ### Copy `devcontainer-example`  to `.devcontainer` folder
@@ -38,7 +46,9 @@ ren devcontainer-example .devcontainer
 Copy `development/vscode-example` to `development/.vscode`. This will setup basic configuration for debugging. 
 
 ```sh
-ren development/vscode-example development/.vscode
+cd development
+ren vscode-example .vscode
+cd ..   #go back to previous dir
 ```
 
 ### Install VSCode Remote Containers extension
@@ -64,11 +74,15 @@ code .
 
 ### Initialize  `frappe bench`
 
-Run the following commands in the terminal inside the container. You might need to create a new terminal in VSCode.
+Run the following commands in the terminal inside the container. 
+*You might need to create a new terminal in VSCode.*
 
 
 ```shell
 bench init --skip-redis-config-generation --frappe-branch version-14 frappe-bench
+```
+
+```shell
 cd frappe-bench 
 ```
 
