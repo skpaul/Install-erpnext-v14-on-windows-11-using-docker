@@ -125,7 +125,7 @@ bench new-site mysite.localhost --no-mariadb-socket
 The same command can be run non-interactively as well:
 
 ```shell
-bench new-site mysite.localhost --mariadb-root-password 123456 --admin-password 123456 --no-mariadb-socket
+bench new-site mysite.localhost --mariadb-root-password 123 --admin-password 123456 --no-mariadb-socket
 ```
 
 The command will ask the MariaDB root password. The default root password is `123`.
