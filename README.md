@@ -24,7 +24,7 @@ cd frappe_docker
 ### Copy `devcontainer-example`  to `.devcontainer` folder
 
 ```shell
-cp -R devcontainer-example .devcontainer
+ren devcontainer-example .devcontainer
 ```
 
 ### Customize `docker-compose.yml`
@@ -38,12 +38,14 @@ cp -R devcontainer-example .devcontainer
 Copy `development/vscode-example` to `development/.vscode`. This will setup basic configuration for debugging. 
 
 ```sh
-cp -R development/vscode-example development/.vscode
+ren development/vscode-example development/.vscode
 ```
 
 ### Install VSCode Remote Containers extension
 
-    Open vscode and install 'Dev Containers' extension
+```shell
+Open vscode and install 'Dev Containers' extension
+```
 
 ### Open  `frappe_docker`  folder in VS Code
 
