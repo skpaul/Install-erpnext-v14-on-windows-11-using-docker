@@ -53,11 +53,10 @@ cd ..   #go back to previous dir
 
 ### Install VSCode Remote Containers extension
 
-```shell
-Open vscode and install 'Dev Containers' extension
-```
+- Open VS Code
+- Install `Dev Containers` extension
 
-### Open  `frappe_docker`  folder in VS Code
+### Open  `mysite`  folder in VS Code
 
 After the extensions are installed successfully-
 
@@ -70,7 +69,7 @@ code .
 - Press `Ctrl + Shift + P`
 - Select  `Remote-Containers: Reopen in Container`
 
-*You can also click in the bottom left corner to access the remote   container menu.*
+*You can also click in the bottom left corner to access the remote container menu.*
 
 ### Initialize  `frappe bench`
 
@@ -105,7 +104,7 @@ bench set-config -g redis_queue redis://redis-queue:6379
 bench set-config -g redis_socketio redis://redis-socketio:6379
 ```
 
-For any reason the above commands fail, set the values in common_site_config.json manually.
+For any reason the above commands fail, set the values in `common_site_config.json` manually.
 
 ```json
 {
@@ -117,62 +116,58 @@ For any reason the above commands fail, set the values in common_site_config.jso
 ```
 
 ### Create a new site
-Sitename **MUST** end with `.localhost` for trying deployments locally. MariaDB root password: 123
-```shell
-bench new-site mysite.localhost --no-mariadb-socket    
-```
-
-The same command can be run non-interactively as well:
+Sitename **MUST** end with `.localhost` for trying deployments locally. 
+#### Options
 
 ```shell
-bench new-site mysite.localhost --mariadb-root-password 123 --admin-password 123456 --no-mariadb-socket
+--db-name          # Set the Database name for new site
+--db-password      # Set the Database password for new site
+--db-type          # Select the Database Type for new site- "postgres" or "mariadb". Default is "mariadb"
+--db-host          # Set Database Host for new site
+--db-port          # Set Database Port for new site
+--db-root-username # Specify Root username for MariaDB or Postgres
+--db-root-password # Specify Root password for MariaDB or Postgres
+--admin-password   # Specify the Administrator password for new site
+--source_sql       # Initiate database with a SQL file
+--install-app      # Install app after installation
 ```
 
-The command will ask the MariaDB root password. The default root password is `123`.
+
+
+```shell
+# The default root password is '123'
+bench new-site mysite.localhost --admin-password 654321 --db-type mariadb --db-root-username root --mariadb-root-password 123  --db-name mysite --db-password 321 --no-mariadb-socket
+```
+
+
 This will create a new site and a `mysite.localhost` directory under `frappe-bench/sites`.
 The option `--no-mariadb-socket` will configure site's database credentials to work with docker.
 You may need to configure your system /etc/hosts if you're on Linux, Mac, or its Windows equivalent.
 
-NOTE
-
-To setup site with PostgreSQL as database use option `--db-type postgres` and `--db-host postgresql`. 
-
-```shell
-bench new-site mysite.localhost --db-type postgres --db-host postgresql
-```
-
-
-
-### STEP 9 Set bench developer mode on the new site
+### Set bench developer mode on the new site
 
 ```shell
 bench --site mysite.localhost set-config developer_mode 1
 bench --site mysite.localhost clear-cache   
 ```
 
-
-​    
-### STEP 10 Install ERPNext
+### Install ERPNext
 
 ```shell
-# --branch is optional
+# we are using v.14
 bench get-app --branch version-14 --resolve-deps erpnext
 bench --site mysite.localhost install-app erpnext
 ```
 
-
-​    
-​    
-
-### STEP 11 Start Frappe bench 
+### Start Frappe bench 
 
 ```shell
 bench start
 ```
 
-You can now login with user Administrator and the password you choose when creating the site. Your website will now be accessible at location `http://mysite.localhost:8000`
+Wait 20-30 seconds to complete the startup process.
 
-​    
+You can now login with user **Administrator** and the password you choose when creating the site. Your website will now be accessible at location `http://mysite.localhost:8000` 
 
 ## Start Frappe with Visual Studio Code Python Debugging
 
@@ -254,4 +249,12 @@ And enter the interactive shell for the development container with the following
 docker exec -e "TERM=xterm-256color" -w /workspace/development -it devcontainer-frappe-1 bash
 ```
 
-## 
+## Connect from PHPMyAdmin/HeidiSQL
+
+```
+Host: localhost
+Port: 3306
+User Name: root
+Password: 123
+```
+

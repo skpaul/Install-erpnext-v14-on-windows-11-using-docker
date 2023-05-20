@@ -9,8 +9,7 @@ services:
       - --skip-character-set-client-handshake
       - --skip-innodb-read-only-compressed # Temporary fix for MariaDB 10.6
     environment:
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123
       # - MYSQL_ROOT_HOST=%
       # - MYSQL_ROOT_PASSWORD=123
       # - MYSQL_USER=1bd3e0294da19198
