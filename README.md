@@ -135,7 +135,7 @@ Sitename **MUST** end with `.localhost` for trying deployments locally.
 
 
 ```shell
-# The default root password is '123'
+# The default mariadb root password is '123'. Must Use the same.
 bench new-site mysite.localhost --admin-password 654321 --db-type mariadb --db-root-username root --mariadb-root-password 123  --db-name mysite --db-password 321 --no-mariadb-socket
 ```
 
